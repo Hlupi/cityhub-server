@@ -1,0 +1,13 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "secret",
+    "database": "postgres",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "production": {
+    "use_env_variable": "postgres://sbmekulugrksdm:496bf6da7565a1094f4ade356e2b93a1ac209ee5c72f3506a167946eb920e91b@ec2-23-23-242-163.compute-1.amazonaws.com:5432/dc3cu3iq11la9r"
+  }
+}
