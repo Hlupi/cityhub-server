@@ -42,7 +42,7 @@ export default class SocialScreenController {
     //Instagram items for slideshow
     @Get('/hashtagsaccepted')
     async acceptedHashtags() {
-        const hashtags = await SocialScreen.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC LIMIT 1`)
+        const hashtags = await SocialScreen.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC`)
         return { hashtags }
     }
 
