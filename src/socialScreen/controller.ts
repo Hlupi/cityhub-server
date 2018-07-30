@@ -43,7 +43,9 @@ export default class SocialScreenController {
     @Get('/hashtagsaccepted')
     async acceptedHashtags() {
         const hashtags = await SocialScreen.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC`)
-        return { hashtags }
+        const events = await Event.query(`SELECT * FROM events`)
+        const data = events.concat(hashtags)
+        return { data }
     }
 
 }
