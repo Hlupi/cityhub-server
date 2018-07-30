@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
-const logic_1 = require("./logic");
 let EventController = class EventController {
     async updateEvent(update) {
         const event = await entity_1.Event.findOneById(update.id);
@@ -25,13 +24,6 @@ let EventController = class EventController {
             return "Event not found";
     }
     async createEvent(newEvent) {
-        if (newEvent.address) {
-            const coord = await logic_1.GeocodeAddress(newEvent.address);
-            if (!coord)
-                throw new routing_controllers_1.BadRequestError('No Address');
-            newEvent.lat = coord.lat;
-            newEvent.lng = coord.lng;
-        }
         return await entity_1.Event.create(newEvent).save();
     }
     async deleteEvent(eventid) {

@@ -1,6 +1,6 @@
 import { JsonController, Post, Param, HttpCode, Get, Body, Patch, Delete, OnUndefined, Authorized, BadRequestError } from 'routing-controllers'
 import { Event } from './entity'
-import {GeocodeAddress} from './logic'
+// import {GeocodeAddress} from './logic'
 
 @JsonController()
 export default class EventController {
@@ -26,13 +26,6 @@ export default class EventController {
   async createEvent(
     @Body() newEvent: Partial<Event>
   ) {
-
-    if (newEvent.address){
-      const coord = await GeocodeAddress(newEvent.address)
-      if (!coord) throw new BadRequestError('No Address')
-      newEvent.lat = coord.lat
-      newEvent.lng = coord.lng
-    }
     return await Event.create(newEvent).save()
   }
 
