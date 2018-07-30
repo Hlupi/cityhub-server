@@ -41,6 +41,10 @@ __decorate([
     __metadata("design:type", Date)
 ], Event.prototype, "endDate", void 0);
 __decorate([
+    typeorm_1.Column('text', { default: "sevent" }),
+    __metadata("design:type", String)
+], Event.prototype, "source", void 0);
+__decorate([
     typeorm_1.CreateDateColumn({ type: "timestamp", nullable: true }),
     __metadata("design:type", Date)
 ], Event.prototype, "postedAt", void 0);

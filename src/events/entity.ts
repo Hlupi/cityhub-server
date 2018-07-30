@@ -24,6 +24,9 @@ export class Event extends BaseEntity {
   @Column({nullable: true})
   endDate: Date
 
+  @Column('text', {default:"sevent"})
+  source: string
+
   @CreateDateColumn({type: "timestamp", nullable: true})
   postedAt: Date
 
