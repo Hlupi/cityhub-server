@@ -1,8 +1,8 @@
-import { JsonController, Post, Param, HttpCode, Get, Body, Patch, Delete, OnUndefined, Authorized } from 'routing-controllers'
+import { JsonController, Post, Param, HttpCode, Get, Body, Patch, Delete, OnUndefined, Authorized, BadRequestError } from 'routing-controllers'
 import { Event } from './entity'
-
+import GeocodeAddress from './logic'
 import Geocode from "react-geocode"
-Geocode.setApiKey("AIzaSyCROzHfzVBykQOiB0CvKeqZV1VaIp7Ux6g")
+
 
 @JsonController()
 export default class EventController {
@@ -30,27 +30,11 @@ export default class EventController {
   ) {
 
     if (newEvent.address){
-      // @ts-ignore
-      // getLocation = (address) => {
-      Geocode.fromAddress(newEvent.address).then(
-        response => {
-            const { lat, lng } = response.results[0].geometry.location;
-
-          newEvent.lat = lat
-          newEvent.lng = lng
-          return newEvent
-
-        },
-        error => {
-            console.error(error);
-        }
-      )
+      const coord = await GeocodeAddress(newEvent.address)
+      if (!coord) throw new BadRequestError('No Address')
+      newEvent.lat = coord.lat
+      newEvent.lng = coord.lng
     }
-    // }
-
-    
-
-
     return await Event.create(newEvent).save()
   }
 
