@@ -26,7 +26,7 @@ let EventController = class EventController {
     }
     async createEvent(newEvent) {
         if (newEvent.address) {
-            const coord = await logic_1.default(newEvent.address);
+            const coord = await logic_1.GeocodeAddress(newEvent.address);
             if (!coord)
                 throw new routing_controllers_1.BadRequestError('No Address');
             newEvent.lat = coord.lat;

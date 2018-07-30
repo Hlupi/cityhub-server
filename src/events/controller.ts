@@ -1,8 +1,6 @@
 import { JsonController, Post, Param, HttpCode, Get, Body, Patch, Delete, OnUndefined, Authorized, BadRequestError } from 'routing-controllers'
 import { Event } from './entity'
-import GeocodeAddress from './logic'
-import Geocode from "react-geocode"
-
+import {GeocodeAddress} from './logic'
 
 @JsonController()
 export default class EventController {
