@@ -1,5 +1,6 @@
 import { JsonController, Get, Post, HttpCode, Body, NotFoundError, Put, Authorized, BadRequestError } from 'routing-controllers'
 import SocialScreen from './entity';
+import {Event} from '../events/entity'
 
 @JsonController()
 export default class SocialScreenController {

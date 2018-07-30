@@ -14,6 +14,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
+const entity_2 = require("../events/entity");
 let SocialScreenController = class SocialScreenController {
     async allHashtags() {
         const hashtags = await entity_1.default.find();
@@ -37,7 +38,7 @@ let SocialScreenController = class SocialScreenController {
     }
     async acceptedHashtags() {
         const hashtags = await entity_1.default.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC`);
-        const events = await Event.query(`SELECT * FROM events`);
+        const events = await entity_2.Event.query(`SELECT * FROM events`);
         const data = events.concat(hashtags);
         return { data };
     }
