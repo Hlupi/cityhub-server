@@ -18,10 +18,10 @@ export class Event extends BaseEntity {
   @Column("text", {nullable: true})
   address: String
 
-  @Column({nullable: true})
+  @Column("decimal", {nullable: true})
   lat: number
 
-  @Column({nullable: true})
+  @Column("decimal", {nullable: true})
   lng: number
   
   @Column({nullable: true})
