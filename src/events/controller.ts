@@ -6,12 +6,12 @@ export default class EventController {
 
   // Edit a specific event
   @Authorized()
-  @Patch('/events/:eventid([0-9]+)')
+  @Patch('/events')
   async updateEvent(
-    @Param('eventid') eventid: number,
+    // @Param('eventid') eventid: number,
     @Body() update: Partial<Event>
   ) {
-    const event = await Event.findOneById(eventid)
+    const event = await Event.findOneById(update.id)
     if (event){
       return await Event.merge(event, update).save()
     } else return "Event not found"

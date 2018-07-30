@@ -15,8 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
 let EventController = class EventController {
-    async updateEvent(eventid, update) {
-        const event = await entity_1.Event.findOneById(eventid);
+    async updateEvent(update) {
+        const event = await entity_1.Event.findOneById(update.id);
         if (event) {
             return await entity_1.Event.merge(event, update).save();
         }
@@ -38,11 +38,10 @@ let EventController = class EventController {
 };
 __decorate([
     routing_controllers_1.Authorized(),
-    routing_controllers_1.Patch('/events/:eventid([0-9]+)'),
-    __param(0, routing_controllers_1.Param('eventid')),
-    __param(1, routing_controllers_1.Body()),
+    routing_controllers_1.Patch('/events'),
+    __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Object]),
+    __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "updateEvent", null);
 __decorate([
