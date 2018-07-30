@@ -14,6 +14,8 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
+const react_geocode_1 = require("react-geocode");
+react_geocode_1.default.setApiKey("AIzaSyCROzHfzVBykQOiB0CvKeqZV1VaIp7Ux6g");
 let EventController = class EventController {
     async updateEvent(update) {
         const event = await entity_1.Event.findOneById(update.id);
@@ -24,6 +26,16 @@ let EventController = class EventController {
             return "Event not found";
     }
     async createEvent(newEvent) {
+        if (newEvent.address) {
+            react_geocode_1.default.fromAddress(newEvent.address).then(response => {
+                const { lat, lng } = response.results[0].geometry.location;
+                newEvent.lat = lat;
+                newEvent.lng = lng;
+                return newEvent;
+            }, error => {
+                console.error(error);
+            });
+        }
         return await entity_1.Event.create(newEvent).save();
     }
     async deleteEvent(eventid) {

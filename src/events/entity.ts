@@ -17,6 +17,12 @@ export class Event extends BaseEntity {
 
   @Column("text", {nullable: true})
   address: String
+
+  @Column({nullable: true})
+  lat: number
+
+  @Column({nullable: true})
+  lng: number
   
   @Column({nullable: true})
   startDate: Date
@@ -25,7 +31,7 @@ export class Event extends BaseEntity {
   endDate: Date
 
   @Column('text', {default:"event"})
-  source: string
+  source: String
 
   @CreateDateColumn({type: "timestamp", nullable: true})
   postedAt: Date

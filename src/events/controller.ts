@@ -1,6 +1,9 @@
 import { JsonController, Post, Param, HttpCode, Get, Body, Patch, Delete, OnUndefined, Authorized } from 'routing-controllers'
 import { Event } from './entity'
 
+import Geocode from "react-geocode"
+Geocode.setApiKey("AIzaSyCROzHfzVBykQOiB0CvKeqZV1VaIp7Ux6g")
+
 @JsonController()
 export default class EventController {
 
@@ -25,6 +28,29 @@ export default class EventController {
   async createEvent(
     @Body() newEvent: Partial<Event>
   ) {
+
+    if (newEvent.address){
+      // @ts-ignore
+      // getLocation = (address) => {
+      Geocode.fromAddress(newEvent.address).then(
+        response => {
+            const { lat, lng } = response.results[0].geometry.location;
+
+          newEvent.lat = lat
+          newEvent.lng = lng
+          return newEvent
+
+        },
+        error => {
+            console.error(error);
+        }
+      )
+    }
+    // }
+
+    
+
+
     return await Event.create(newEvent).save()
   }
 

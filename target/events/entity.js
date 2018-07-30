@@ -34,6 +34,14 @@ __decorate([
 ], Event.prototype, "address", void 0);
 __decorate([
     typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", Number)
+], Event.prototype, "lat", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: true }),
+    __metadata("design:type", Number)
+], Event.prototype, "lng", void 0);
+__decorate([
+    typeorm_1.Column({ nullable: true }),
     __metadata("design:type", Date)
 ], Event.prototype, "startDate", void 0);
 __decorate([
