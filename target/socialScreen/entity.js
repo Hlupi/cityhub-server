@@ -54,6 +54,18 @@ __decorate([
     __metadata("design:type", String)
 ], SocialScreen.prototype, "source", void 0);
 __decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SocialScreen.prototype, "owner", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SocialScreen.prototype, "type", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SocialScreen.prototype, "location", void 0);
+__decorate([
     typeorm_1.CreateDateColumn({ type: "timestamp" }),
     __metadata("design:type", Date)
 ], SocialScreen.prototype, "createdAt", void 0);

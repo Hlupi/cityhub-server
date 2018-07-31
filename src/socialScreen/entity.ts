@@ -33,9 +33,19 @@ export default class SocialScreen extends BaseEntity {
   @Column('text', {nullable:true})
   source: string
 
+  @Column('text', {nullable:true})
+  owner: string
+
+  @Column('text', {nullable:true})
+  type: string
+
+  @Column('text', {nullable:true})
+  location: string
+
   @CreateDateColumn({type: "timestamp"})
   createdAt: Date;
-}
+  }
 
 
 // we need to parse the 'date' in the front end.. 
+

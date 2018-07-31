@@ -36,11 +36,18 @@ let SocialScreenController = class SocialScreenController {
         const result = entity_1.default.merge(item, update).save();
         return result;
     }
-    async acceptedHashtags() {
-        const hashtags = await entity_1.default.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC`);
-        const events = await entity_2.Event.query(`SELECT * FROM events`);
-        const data = events.concat(hashtags);
-        return { data };
+    async acceptedHashtags(location) {
+        console.log(location);
+        const hashtags = await entity_1.default.query(`SELECT * FROM social_screens WHERE status='accepted' AND location = '${location}' ORDER BY date DESC LIMIT 1`);
+        const eventsToday = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`);
+        const events = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`);
+        const jokes = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS  NULL AND location = '${location}' LIMIT 2`);
+        events.map(e => e.source = 'event');
+        const eventsToDayObject = { eventsToday };
+        eventsToDayObject['source'] = 'eventsList';
+        jokes.map(e => e.source = 'joke');
+        const data = hashtags.concat(eventsToDayObject).concat(events).concat(jokes);
+        return data;
     }
 };
 __decorate([
@@ -68,9 +75,10 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], SocialScreenController.prototype, "updateEvent", null);
 __decorate([
-    routing_controllers_1.Get('/hashtagsaccepted'),
+    routing_controllers_1.Get('/hashtagsaccepted/:location'),
+    __param(0, routing_controllers_1.Param('location')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
+    __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
 ], SocialScreenController.prototype, "acceptedHashtags", null);
 SocialScreenController = __decorate([

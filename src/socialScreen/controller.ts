@@ -1,7 +1,6 @@
-import { JsonController, Get, Post, HttpCode, Body, NotFoundError, Put, Authorized, BadRequestError } from 'routing-controllers'
+import { JsonController, Get, Post, HttpCode, Body, NotFoundError, Put, Authorized, BadRequestError, Param } from 'routing-controllers'
 import SocialScreen from './entity';
 import {Event} from '../events/entity'
-
 @JsonController()
 export default class SocialScreenController {
 
@@ -41,12 +40,23 @@ export default class SocialScreenController {
     }
 
     //Instagram items for slideshow
-    @Get('/hashtagsaccepted')
-    async acceptedHashtags() {
-        const hashtags = await SocialScreen.query(`SELECT * FROM social_screens WHERE status='accepted' ORDER BY date DESC`)
-        const events = await Event.query(`SELECT * FROM events`)
-        const data = events.concat(hashtags)
-        return { data }
+    
+    @Get('/hashtagsaccepted/:location')
+    async acceptedHashtags(
+        @Param('location') location: string,
+    ) {
+        console.log(location)
+        const hashtags = await SocialScreen.query(`SELECT * FROM social_screens WHERE status='accepted' AND location = '${location}' ORDER BY date DESC LIMIT 1`)
+        const eventsToday = await Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`)
+        const events = await Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`)
+        const jokes = await Event.query(`SELECT * FROM events WHERE lat IS  NULL AND location = '${location}' LIMIT 2`)
+        events.map(e => e.source = 'event')
+        const eventsToDayObject = {eventsToday}
+        eventsToDayObject['source'] = 'eventsList'
+        jokes.map(e => e.source = 'joke')
+        const data = hashtags.concat(eventsToDayObject).concat(events).concat(jokes)
+        return data
+
     }
 
 }
