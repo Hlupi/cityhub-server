@@ -50,9 +50,8 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
-    class_validator_1.IsString(),
     class_validator_1.MinLength(2),
-    typeorm_1.Column('text'),
+    typeorm_1.Column('text', { nullable: true }),
     __metadata("design:type", String)
 ], User.prototype, "city", void 0);
 __decorate([

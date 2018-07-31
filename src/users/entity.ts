@@ -29,9 +29,9 @@ export default class User extends BaseEntity {
   @Exclude({ toPlainOnly: true })
   password: string
 
-  @IsString()
+  // @IsString()
   @MinLength(2)
-  @Column('text')
+  @Column('text', {nullable:true})
   city: string
 
   @Column('decimal', {nullable:true})
