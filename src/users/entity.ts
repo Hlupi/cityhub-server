@@ -1,4 +1,4 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { BaseEntity, Entity, PrimaryGeneratedColumn, Column } from 'typeorm'
 import { Exclude } from 'class-transformer';
 import { MinLength, IsString, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt'
@@ -28,6 +28,11 @@ export default class User extends BaseEntity {
   @Column('text')
   @Exclude({ toPlainOnly: true })
   password: string
+
+  @IsString()
+  @MinLength(2)
+  @Column('text')
+  city: string
 
   async setPassword(rawPassword: string) {
     const hash = await bcrypt.hash(rawPassword, 10)

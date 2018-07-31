@@ -49,6 +49,12 @@ __decorate([
     class_transformer_1.Exclude({ toPlainOnly: true }),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    class_validator_1.IsString(),
+    class_validator_1.MinLength(2),
+    typeorm_1.Column('text'),
+    __metadata("design:type", String)
+], User.prototype, "city", void 0);
 User = __decorate([
     typeorm_1.Entity()
 ], User);
