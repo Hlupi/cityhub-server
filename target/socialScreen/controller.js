@@ -38,16 +38,16 @@ let SocialScreenController = class SocialScreenController {
     }
     async acceptedHashtags(location) {
         console.log(location);
-        const hashtags = await entity_1.default.query(`SELECT * FROM social_screens WHERE status='accepted' AND location = '${location}' ORDER BY date DESC LIMIT 1`);
-        const eventsToday = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`);
-        const events = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' LIMIT 2`);
-        const jokes = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS  NULL AND location = '${location}' LIMIT 2`);
-        events.map(e => e.source = 'event');
+        const hashtags = await entity_1.default.query(`SELECT * FROM social_screens WHERE status='accepted' AND location = '${location}' ORDER BY date DESC LIMIT 50`);
+        const eventsToday = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' AND DATE(start_date)<=DATE(NOW()) AND DATE(end_date)>=DATE(NOW()) LIMIT 5`);
+        const events = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS NOT NULL AND location = '${location}' AND DATE(start_date)<=DATE(NOW()) AND DATE(end_date)>=DATE(NOW()) LIMIT 5`);
+        const jokes = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS  NULL AND location = '${location}'`);
         const eventsToDayObject = { eventsToday };
         eventsToDayObject['source'] = 'eventsList';
+        events.map(e => e.source = 'event');
         jokes.map(e => e.source = 'joke');
         const data = hashtags.concat(eventsToDayObject).concat(events).concat(jokes);
-        return data;
+        return data.sort(() => Math.random() - 0.5);
     }
 };
 __decorate([
