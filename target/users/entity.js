@@ -55,6 +55,14 @@ __decorate([
     typeorm_1.Column('text'),
     __metadata("design:type", String)
 ], User.prototype, "city", void 0);
+__decorate([
+    typeorm_1.Column('decimal', { nullable: true }),
+    __metadata("design:type", Number)
+], User.prototype, "lat", void 0);
+__decorate([
+    typeorm_1.Column('decimal', { nullable: true }),
+    __metadata("design:type", Number)
+], User.prototype, "lng", void 0);
 User = __decorate([
     typeorm_1.Entity()
 ], User);

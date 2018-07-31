@@ -34,6 +34,12 @@ export default class User extends BaseEntity {
   @Column('text')
   city: string
 
+  @Column('decimal', {nullable:true})
+  lat: number
+  
+  @Column('decimal', {nullable:true})
+  lng: number
+
   async setPassword(rawPassword: string) {
     const hash = await bcrypt.hash(rawPassword, 10)
     this.password = hash
