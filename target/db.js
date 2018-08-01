@@ -6,6 +6,7 @@ const StringUtils_1 = require("typeorm/util/StringUtils");
 const entity_1 = require("./users/entity");
 const entity_2 = require("./socialScreen/entity");
 const entity_3 = require("./events/entity");
+const entity_4 = require("./messages/entity");
 class CustomNamingStrategy extends DefaultNamingStrategy_1.DefaultNamingStrategy {
     tableName(targetName, userSpecifiedName) {
         return userSpecifiedName ? userSpecifiedName : StringUtils_1.snakeCase(targetName) + 's';
@@ -27,7 +28,8 @@ exports.default = () => typeorm_1.createConnection({
     entities: [
         entity_1.default,
         entity_3.Event,
-        entity_2.default
+        entity_2.default,
+        entity_4.default
     ],
     synchronize: true,
     logging: true,
