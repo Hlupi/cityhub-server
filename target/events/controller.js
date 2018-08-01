@@ -63,7 +63,6 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], EventController.prototype, "deleteEvent", null);
 __decorate([
-    routing_controllers_1.Authorized(),
     routing_controllers_1.Get('/events/:eventid([0-9]+)'),
     __param(0, routing_controllers_1.Param('eventid')),
     __metadata("design:type", Function),

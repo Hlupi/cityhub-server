@@ -42,7 +42,7 @@ export default class EventController {
 
 
   // Get event by id
-  @Authorized()
+  // @Authorized()
   @Get('/events/:eventid([0-9]+)')
   getEvent(
     @Param('eventid') eventid: number
