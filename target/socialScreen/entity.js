@@ -28,6 +28,18 @@ __decorate([
 __decorate([
     typeorm_1.Column('text', { nullable: true }),
     __metadata("design:type", String)
+], SocialScreen.prototype, "userName", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SocialScreen.prototype, "profilePicUrl", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
+], SocialScreen.prototype, "fullName", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
 ], SocialScreen.prototype, "text", void 0);
 __decorate([
     typeorm_1.Column('int', { nullable: true }),
