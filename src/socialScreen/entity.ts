@@ -50,5 +50,3 @@ export default class SocialScreen extends BaseEntity {
   }
 
 
-// we need to parse the 'date' in the front end.. 
-
