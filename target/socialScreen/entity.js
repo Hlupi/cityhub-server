@@ -24,6 +24,10 @@ __decorate([
 __decorate([
     typeorm_1.Column('text', { nullable: true }),
     __metadata("design:type", String)
+], SocialScreen.prototype, "mediaShortCode", void 0);
+__decorate([
+    typeorm_1.Column('text', { nullable: true }),
+    __metadata("design:type", String)
 ], SocialScreen.prototype, "text", void 0);
 __decorate([
     typeorm_1.Column('int', { nullable: true }),
