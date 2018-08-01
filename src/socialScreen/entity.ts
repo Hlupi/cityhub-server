@@ -9,6 +9,9 @@ export default class SocialScreen extends BaseEntity {
   @Column('text', {nullable:true, unique:true})  
   mediaId: string 
 
+  @Column('text', {nullable:true})  
+  mediaShortCode: string 
+
   @Column('text', {nullable:true})
   text: string
 
