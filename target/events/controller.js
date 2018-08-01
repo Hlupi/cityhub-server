@@ -33,7 +33,11 @@ let EventController = class EventController {
         return entity_1.Event.findOneById(eventid);
     }
     getEvents() {
-        return entity_1.Event.find();
+        return entity_1.Event.find({
+            order: {
+                postedAt: "DESC"
+            }
+        });
     }
 };
 __decorate([

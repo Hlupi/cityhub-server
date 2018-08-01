@@ -15,7 +15,7 @@ export default class SocialScreen extends BaseEntity {
   @Column('text', {nullable:true})  
   userName: String
 
-  @Column('text', {nullable:true})  
+  @Column('text', {nullable:true})
   profilePicUrl: String
 
   @Column('text', {nullable:true})  

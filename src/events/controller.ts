@@ -51,11 +51,15 @@ export default class EventController {
   }
 
   
-  // Get all event
+  // Get all events
   @Authorized()
   @Get('/events')
   getEvents() {
-    return Event.find()
+    return Event.find({ 
+      order: {
+          postedAt: "DESC"
+      }
+  })
   }
 }
 
