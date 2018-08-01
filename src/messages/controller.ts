@@ -18,7 +18,7 @@ export default class MessageController {
 
   // Get message by location
   // @Authorized()
-  @Get('/messages/:location([0-9]+)')
+  @Get('/messages/:location')
   getMessage(
     @Param('location') location: string
   ) {

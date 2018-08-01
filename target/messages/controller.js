@@ -36,7 +36,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MessageController.prototype, "updateMessage", null);
 __decorate([
-    routing_controllers_1.Get('/messages/:location([0-9]+)'),
+    routing_controllers_1.Get('/messages/:location'),
     __param(0, routing_controllers_1.Param('location')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
