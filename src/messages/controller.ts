@@ -1,19 +1,29 @@
-import { JsonController,Body, Patch, Authorized } from 'routing-controllers'
+import { JsonController,Body, Patch, Authorized, Get } from 'routing-controllers'
 import Message  from './entity'
 
 @JsonController()
 export default class MessageController {
 
-  // Edit a message
+  // Edit a message by location
   @Authorized()
   @Patch('/messages')
   async updateMessage(
     @Body() update: Partial<Message>
   ) {
-    const message = await Message.findOne({location: update.location})
+    const message = await Message.findOne({city: update.city})
     if (message){
       return await Message.merge(message, update).save()
     } else return "Message not found"
+  }
+
+  // Get message by location
+  @Authorized()
+  @Get('/messages')
+  async getMessage(
+    @Body() city
+  ) {
+    return await Message.findOne({city: city})
+    
   }
 
 

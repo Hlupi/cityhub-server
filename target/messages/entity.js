@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     typeorm_1.Column('text', { nullable: false }),
     __metadata("design:type", String)
-], Message.prototype, "location", void 0);
+], Message.prototype, "city", void 0);
 Message = __decorate([
     typeorm_1.Entity()
 ], Message);

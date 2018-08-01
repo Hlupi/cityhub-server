@@ -16,12 +16,15 @@ const routing_controllers_1 = require("routing-controllers");
 const entity_1 = require("./entity");
 let MessageController = class MessageController {
     async updateMessage(update) {
-        const message = await entity_1.default.findOne({ location: update.location });
+        const message = await entity_1.default.findOne({ city: update.city });
         if (message) {
             return await entity_1.default.merge(message, update).save();
         }
         else
             return "Message not found";
+    }
+    async getMessage(city) {
+        return await entity_1.default.findOne({ city: city });
     }
 };
 __decorate([
@@ -32,6 +35,14 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
 ], MessageController.prototype, "updateMessage", null);
+__decorate([
+    routing_controllers_1.Authorized(),
+    routing_controllers_1.Get('/messages'),
+    __param(0, routing_controllers_1.Body()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], MessageController.prototype, "getMessage", null);
 MessageController = __decorate([
     routing_controllers_1.JsonController()
 ], MessageController);

@@ -10,7 +10,7 @@ export default class Message extends BaseEntity {
   text: string 
 
   @Column('text', {nullable:false})
-  location: string
+  city: string
 
   }
 
