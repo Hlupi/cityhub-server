@@ -1,4 +1,4 @@
-import { JsonController,Body, Patch, Authorized, Get } from 'routing-controllers'
+import { JsonController,Body, Patch, Authorized, Get, Param } from 'routing-controllers'
 import Message  from './entity'
 
 @JsonController()
@@ -17,15 +17,13 @@ export default class MessageController {
   }
 
   // Get message by location
-  @Authorized()
-  @Get('/messages')
-  async getMessage(
-    @Body() city
+  // @Authorized()
+  @Get('/messages/:location([0-9]+)')
+  getMessage(
+    @Param('location') location: string
   ) {
-    return await Message.findOne({city: city})
-    
-  }
-
+    return Message.findOne({city: location})
+  } 
 
 }
 

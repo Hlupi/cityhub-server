@@ -23,8 +23,8 @@ let MessageController = class MessageController {
         else
             return "Message not found";
     }
-    async getMessage(city) {
-        return await entity_1.default.findOne({ city: city });
+    getMessage(location) {
+        return entity_1.default.findOne({ city: location });
     }
 };
 __decorate([
@@ -36,12 +36,11 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], MessageController.prototype, "updateMessage", null);
 __decorate([
-    routing_controllers_1.Authorized(),
-    routing_controllers_1.Get('/messages'),
-    __param(0, routing_controllers_1.Body()),
+    routing_controllers_1.Get('/messages/:location([0-9]+)'),
+    __param(0, routing_controllers_1.Param('location')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
 ], MessageController.prototype, "getMessage", null);
 MessageController = __decorate([
     routing_controllers_1.JsonController()
