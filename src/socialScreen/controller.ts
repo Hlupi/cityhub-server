@@ -8,7 +8,11 @@ export default class SocialScreenController {
     @Authorized()
     @Get('/hashtags')
     async allHashtags() {
-        const hashtags = await SocialScreen.find()
+        const hashtags = await SocialScreen.find({ 
+            order: {
+                date: "DESC"
+            }
+        })
         return { hashtags }
     }
 

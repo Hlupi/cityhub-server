@@ -17,7 +17,11 @@ const entity_1 = require("./entity");
 const entity_2 = require("../events/entity");
 let SocialScreenController = class SocialScreenController {
     async allHashtags() {
-        const hashtags = await entity_1.default.find();
+        const hashtags = await entity_1.default.find({
+            order: {
+                date: "DESC"
+            }
+        });
         return { hashtags };
     }
     async createSocialScreen(newSocialScreen) {
