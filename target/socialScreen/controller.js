@@ -48,11 +48,9 @@ let SocialScreenController = class SocialScreenController {
         const jokes = await entity_2.Event.query(`SELECT * FROM events WHERE lat IS  NULL AND location = '${location}'`);
         const eventsToDayObject = { eventsToday };
         eventsToDayObject['source'] = 'eventsList';
-        if (eventsToDayObject.eventsToday.length > 0)
-            hashtags.concat(eventsToDayObject);
         events.map(e => e.source = 'event');
         jokes.map(e => e.source = 'joke');
-        const data = hashtags.concat(events).concat(jokes);
+        const data = hashtags.concat(events).concat(jokes).concat(eventsToDayObject);
         return data.sort(() => Math.random() - 0.5);
     }
 };
