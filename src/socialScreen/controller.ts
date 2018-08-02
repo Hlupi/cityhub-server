@@ -58,13 +58,13 @@ export default class SocialScreenController {
 
         const eventsToDayObject = {eventsToday}
         eventsToDayObject['source'] = 'eventsList'
-
+        if(eventsToDayObject.eventsToday.length > 0) hashtags.concat(eventsToDayObject)
         events.map(e => e.source = 'event')
 
         jokes.map(e => e.source = 'joke')
 
-        const data = hashtags.concat(eventsToDayObject).concat(events).concat(jokes)
-        
+        const data = hashtags.concat(events).concat(jokes)
+
         return data.sort(() => Math.random() - 0.5)
 
     }
