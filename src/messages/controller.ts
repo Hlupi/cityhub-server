@@ -5,7 +5,7 @@ import Message  from './entity'
 export default class MessageController {
 
   // Edit a message by location
-  @Authorized()
+  // @Authorized()
   @Patch('/messages')
   async updateMessage(
     @Body() update: Partial<Message>

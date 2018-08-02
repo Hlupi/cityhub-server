@@ -28,7 +28,6 @@ let MessageController = class MessageController {
     }
 };
 __decorate([
-    routing_controllers_1.Authorized(),
     routing_controllers_1.Patch('/messages'),
     __param(0, routing_controllers_1.Body()),
     __metadata("design:type", Function),
